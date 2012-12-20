@@ -1,0 +1,22 @@
+{
+  "name": "csv2json-stream",
+  "version": "0.0.1",
+  "description": "Streaming parser csv to json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MRdNk/csv2json-stream.git"
+  },
+  "keywords": [
+    "csv2json",
+    "csv",
+    "json",
+    "parser"
+  ],
+  "author": "mrdnk",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
