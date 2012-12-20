@@ -58,10 +58,13 @@ function csv2json (opts) {
     
       for(var i=0; i<len-1;i++) {
         var emitend = (i === len-2) ? ']' : ',';
-        s.emit('data', arr[i] + emitend + '\n');
+        var dr = new Row(that.opts.columns);
+        dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
+          s.emit('data', data + emitend);
+        });
       }
-    }
 
+    }
   };
 
   s.end = function (buffer) {
@@ -74,7 +77,7 @@ function csv2json (opts) {
     for(var i=0; i<len;i++) {
       var emitend = (i === len-1) ? '] \n' : ', \n';
       
-      var dr = new Row(['Column1', 'Column2', 'Column3']);
+      var dr = new Row(that.opts.columns);
       dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
         s.emit('data', data + emitend);
       });

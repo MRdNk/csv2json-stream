@@ -19,7 +19,8 @@ var csv2json = require('./index.js');
 
 var opts = {
   // delim : '\t'
-  delim : ','
+  delim : ',',
+  columns: ['Column1', 'Column2', 'Column3']
 };
 
 fs.createReadStream('csv.csv').pipe(csv2json(opts)).pipe(fs.createWriteStream('csv.json'));
