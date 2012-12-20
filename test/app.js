@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var csv2json = require('../index.js');
 
 function runtest (file) {
@@ -8,7 +9,7 @@ function runtest (file) {
     delim : ','
   };
 
-  fs.createReadStream(__dirname + '/' + file).pipe(csv2json(opts)).pipe(fs.createWriteStream(__dirname + '/' + 'example.json'));
+  fs.createReadStream(path.resolve(__dirname, file)).pipe(csv2json(opts)).pipe(fs.createWriteStream(path.resolve(__dirname, 'example.json')));
 }
 
 module.exports = runtest;
