@@ -7,7 +7,9 @@ Optional Parameter:
 Pass an object
 
 delim => delimiter used
+
 \t for tab delimited file
+
 , for comma delimited file, will take care of double quoted values as well.
 
 ```node
