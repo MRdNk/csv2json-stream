@@ -3,21 +3,17 @@ var Stream = require('stream');
 function Row (columns) {
   this.columns = columns;
   this.data = {};
-  console.log('Constructor: this.columns ::' + this.columns);
   return this;
 }
 
 Row.prototype.parseToRow = function (data, delim, cb) {
   var that = this;
   var array = data.split(delim);
-  console.log('array: ' + array + ' :', delim);
-
+  
   for(var i=0; i<array.length; i++) {
     that.data[that.columns[i]] = array[i].replace(/"/g,'');
-    console.log(array[i]);
   }
 
-  // console.log('tath: ' + JSON.stringify(that.data));
   cb(null, JSON.stringify(that.data, null, 4));
 
 };

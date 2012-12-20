@@ -25,3 +25,11 @@ var opts = {
 fs.createReadStream('csv.csv').pipe(csv2json(opts)).pipe(fs.createWriteStream('csv.json'));
 
 ```
+
+You can also run the basic test:
+
+```node
+
+node /test
+
+```
