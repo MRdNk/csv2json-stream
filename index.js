@@ -62,16 +62,20 @@ function csv2json (opts) {
     that.getLineEnding();
     
     if(that.currentData.indexOf(that.lineEnding) !== -1) {
-      var arr = that.currentData.split('\r\n');
+      var arr = that.currentData.split(that.lineEnding);
+      console.log('arr: ', arr);
       var len = arr.length;
     
       for(var i=0; i<len-1;i++) {
-        var emitend = (i === len-2) ? ']' : ',';
+        //var emitend = (i === len-2) ? ']' : ',';
+        var emitend = ',';
         var dr = new Row(that.opts.columns);
         dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
           s.emit('data', data + emitend);
         });
       }
+
+      that.currentData = arr[len-1];
 
     }
   };
