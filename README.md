@@ -3,10 +3,10 @@ csv2json
 
 csv file to json array - streaming
 
-Optional Parameter:   
 <dl>
+  <dt>Optional Parameter:</dt>
   <dl>
-    <dt>Object:</dd>
+    <dd>Object:</dd>
     <dl>
       <dd>delim => delimiter used</dd>
       <dl>
