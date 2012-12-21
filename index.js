@@ -29,7 +29,7 @@ function csv2json (opts) {
   if (!that.opts.delim || that.opts.delim === ',') {
     that.opts.delim = /,(?!(?:[^",]|[^"],[^"])+")/;
   }
-  if (that.opts.delim == '\t') {
+  if (that.opts.delim === '\t') {
     that.opts.delim = '\\t';
   }
   if (typeof that.opts.doublequote === undefined) {
