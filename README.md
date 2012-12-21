@@ -3,19 +3,14 @@ csv2json
 
 csv file to json array - streaming
 
-<dl>
-  <dt>Optional Parameter:</dt>
-  <dl>
-    <dd>Object:</dd>
-    <dl>
-      <dd>delim => delimiter used</dd>
-      <dl>
-        <dd>\t for tab delimited file</dd>
-        <dd>, for comma delimited file, will take care of double quoted values as well.</dd>
-      </dl>
-    </dl>
-  </dl>
-</dl>
+Optional Parameter:
+
+```node
+
+var options = {
+  delim : ',' // Defaults to comma (which includes double quote support), \t also supported
+}
+```
 
 ```node
 
