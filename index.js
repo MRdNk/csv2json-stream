@@ -47,14 +47,23 @@ function csv2json (opts) {
     }
   };
 
+  that.lineEnding = null;
+  that.getLineEnding = function () {
+    if(!that.lineEnding) {
+      that.lineEnding = (that.currentData.indexOf('\r') !== -1) ? '\r\n' : '\n';
+    }
+    return that.lineEnding;
+  };
+
   s.write = function (buffer) {
     that.currentData += buffer;
 
     that.hasStarted();
+    that.getLineEnding();
     
-    if(that.currentData.indexOf('\r\n') !== -1) {
+    if(that.currentData.indexOf(that.lineEnding) !== -1) {
       var arr = that.currentData.split('\r\n');
-      var len = arry.length;
+      var len = arr.length;
     
       for(var i=0; i<len-1;i++) {
         var emitend = (i === len-2) ? ']' : ',';
@@ -69,7 +78,9 @@ function csv2json (opts) {
 
   s.end = function (buffer) {
 
-    var arr = that.currentData.split('\n');
+    that.getLineEnding();
+
+    var arr = that.currentData.split(that.lineEnding);
     var len = arr.length;
 
     that.hasStarted();
