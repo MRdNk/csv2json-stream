@@ -8,7 +8,8 @@ Optional Parameter:
 ```node
 
 var options = {
-  delim : ',' // Defaults to comma (which includes double quote support), \t also supported
+    delim : ',' // Defaults to comma (which includes double quote support), \t also supported
+  , columns : ['Name', 'TwitterName'] // Array of column names, defaults to Column0 -> Column[n]
 }
 ```
 
