@@ -1,7 +1,7 @@
 var Stream = require('stream');
 
 function Row (columns) {
-  this.columns = columns;
+  this.columns = columns || [];
   this.data = {};
   return this;
 }
@@ -9,8 +9,17 @@ function Row (columns) {
 Row.prototype.parseToRow = function (data, delim, cb) {
   var that = this;
   var array = data.split(delim);
+
+  var hasColumns;
+
+  if(!that.columns) {
+    hasColumns = false;
+  }
   
   for(var i=0; i<array.length; i++) {
+    if (!hasColumns) {
+      that.columns.push('Column' + i);
+    }
     that.data[that.columns[i]] = array[i].replace(/"/g,'').trim();
   }
 
@@ -25,7 +34,7 @@ function csv2json (opts) {
   that.rows = [];
   that.started = false;
 
-  that.opts = opts;
+  that.opts = opts || {};
   if (!that.opts.delim || that.opts.delim === ',') {
     that.opts.delim = /,(?!(?:[^",]|[^"],[^"])+")/;
   }
