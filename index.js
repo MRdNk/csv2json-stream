@@ -20,7 +20,8 @@ Row.prototype.parseToRow = function (data, delim, cb) {
     if (!hasColumns) {
       that.columns.push('Column' + i);
     }
-    that.data[that.columns[i]] = array[i].replace(/"/g,'').trim();
+		var data = array[i].replace(/"/g,'').trim();
+    that.data[that.columns[i]] = parseFloat(data) || parseInt(data) || data;
   }
 
   cb(null, JSON.stringify(that.data, null, 4));

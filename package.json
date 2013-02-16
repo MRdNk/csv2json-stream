@@ -1,6 +1,6 @@
 {
   "name": "csv2json-stream",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Streaming parser csv to json",
   "main": "index.js",
   "scripts": {
