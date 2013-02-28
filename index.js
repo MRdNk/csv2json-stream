@@ -109,7 +109,12 @@ function csv2json (opts) {
     var arr = that.currentData.split(that.lineEnding);
     var len = arr.length;
 
-    that.hasStarted();
+    // if the first line is headers has been set
+    if (that.headers && that.started === false) {
+      that.opts.columns = arr[0].split(that.opts.delim);
+      i = 1;
+      that.hasStarted();
+    }
 
     for(var i=0; i<len;i++) {
       var emitend = (i === len-1) ? '] \n' : ', \n';
