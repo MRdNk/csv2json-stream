@@ -1,9 +1,9 @@
 [{
-    "Column0": "fred",
-    "Column1": "bob",
-    "Column2": "phil"
+    "a": "fred",
+    "b": "bob",
+    "c": "phil"
 },{
-    "Column0": "another",
-    "Column1": "line",
-    "Column2": "there, he is"
+    "a": "another",
+    "b": "line",
+    "c": "there, he is"
 }] 

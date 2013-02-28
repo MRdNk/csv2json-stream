@@ -31,9 +31,11 @@ Row.prototype.parseToRow = function (data, delim, cb) {
 function csv2json (opts) {
 
   var that = this;
+
   that.currentData = '';
   that.rows = [];
   that.started = false;
+  that.headers = opts.headers || false;
 
   that.opts = opts || {};
   if (!that.opts.delim || that.opts.delim === ',') {
@@ -45,8 +47,9 @@ function csv2json (opts) {
   if (typeof that.opts.doublequote === undefined) {
     that.opts.doublequote = true;
   }
+
   if(that.opts.headers === true) {
-    // that.opts.columns 
+    that.heades = true;
   }
 
   var s = new Stream();
@@ -71,14 +74,22 @@ function csv2json (opts) {
   s.write = function (buffer) {
     that.currentData += buffer;
 
-    that.hasStarted();
     that.getLineEnding();
-
+      
     if(that.currentData.indexOf(that.lineEnding) !== -1) {
+      var i = 0;
       var arr = that.currentData.split(that.lineEnding);
+
+      // if the first line is headers has been set
+      if (that.headers && that.started === false) {
+        that.opts.columns = arr[0].split(that.opts.delim);
+        i = 1;
+        that.hasStarted();
+      }
+
       var len = arr.length;
     
-      for(var i=0; i<len-1;i++) {
+      for(; i<len-1;i++) {
         var emitend = ',';
         var dr = new Row(that.opts.columns);
         dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
