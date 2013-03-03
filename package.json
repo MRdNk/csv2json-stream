@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git@github.com:MRdNk/csv2json-stream.git"
   },
+	"dependencies": {
+		"tryparse": "0.0.x"
+	},
   "keywords": [
     "csv2json",
     "csv",

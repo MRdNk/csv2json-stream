@@ -1,4 +1,5 @@
 var Stream = require('stream');
+var tryParse = require('tryparse')
 
 function Row (columns) {
   this.columns = columns || [];
@@ -21,7 +22,8 @@ Row.prototype.parseToRow = function (data, delim, cb) {
       that.columns.push('Column' + i);
     }
 		var data = array[i].replace(/"/g,'').trim();
-    var val = parseFloat(data) || parseInt(data) || data;
+    // var val = parseFloat(data) || parseInt(data) || data;
+    var val = tryParse.float(data) || tryParse.int(data) || data;
     that.data[that.columns[i]] = (val == data) ? val : data;
   }
 
