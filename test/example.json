@@ -1,9 +1,11 @@
-{
+[{
     "a": "fred",
     "b": "bob",
-    "c": "phil"
-}{
+    "c": "phil",
+    "d": "3s4"
+},{
     "a": "another",
     "b": "line",
-    "c": "there, he is"
-}
+    "c": "there, he is",
+    "d": 3.4
+}] 

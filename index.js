@@ -21,7 +21,8 @@ Row.prototype.parseToRow = function (data, delim, cb) {
       that.columns.push('Column' + i);
     }
 		var data = array[i].replace(/"/g,'').trim();
-    that.data[that.columns[i]] = parseFloat(data) || parseInt(data) || data;
+    var val = parseFloat(data) || parseInt(data) || data;
+    that.data[that.columns[i]] = (val == data) ? val : data;
   }
 
   cb(null, JSON.stringify(that.data, null, 4));
@@ -124,7 +125,6 @@ function csv2json (opts) {
         emitend = (i === len-1) ? '] \n' : ', \n';
       else 
         emitend = '\n';
-
       var dr = new Row(that.opts.columns);
       dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
         s.emit('data', data + emitend);

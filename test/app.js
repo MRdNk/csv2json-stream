@@ -9,7 +9,7 @@ function runtest (file) {
     delim : ',',
     columns: ['Column1', 'Column2', 'Column3'],
     headers: true,
-    outputArray: false
+    outputArray: true
   };
 
   console.log('opts: ', opts)
