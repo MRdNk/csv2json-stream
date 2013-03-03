@@ -8,7 +8,8 @@ function runtest (file) {
     // delim : '\t'
     delim : ',',
     columns: ['Column1', 'Column2', 'Column3'],
-    headers: true
+    headers: true,
+    outputArray: true
   };
 
   console.log('opts: ', opts)

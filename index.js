@@ -36,6 +36,7 @@ function csv2json (opts) {
   that.rows = [];
   that.started = false;
   that.headers = opts.headers || false;
+  that.outputArray = opts.outputArray || false;
 
   that.opts = opts || {};
   if (!that.opts.delim || that.opts.delim === ',') {
@@ -58,7 +59,8 @@ function csv2json (opts) {
 
   that.hasStarted = function () {
     if(that.started === false) {
-      s.emit('data', '[');
+      if(that.outputArray) 
+        s.emit('data', '[');
       that.started = true;
     }
   };
@@ -117,7 +119,7 @@ function csv2json (opts) {
     }
 
     for(var i=0; i<len;i++) {
-      var emitend = (i === len-1) ? '] \n' : ', \n';
+      var emitend = (i === len-1 && that.outputArray) ? '] \n' : ', \n';
       
       var dr = new Row(that.opts.columns);
       dr.parseToRow(arr[i], that.opts.delim, function (err, data) {
